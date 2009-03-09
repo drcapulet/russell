@@ -1,0 +1,27 @@
+name:
+    Blueprint CSS
+
+description:
+    This is a test for Blueprint
+
+manifest:
+  ie.css
+  
+  print.css
+  
+  screen.css
+
+inside: true
+
+type: CSS
+
+src:
+    <link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
+    
+    <link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print"> 
+    
+    <!--[if IE]>
+    
+      <link rel="stylesheet" href="blueprint/ie.css" type="text/css" media="screen, projection">
+      
+    <![endif]-->

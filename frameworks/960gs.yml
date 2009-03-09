@@ -1,0 +1,19 @@
+name:
+    960 CSS
+
+description:
+    This is a test for 960
+
+manifest:
+    none
+
+inside: true
+
+type: CSS
+
+src:
+    <link rel="stylesheet" type="text/css" media="all" href="960gs/reset.css" />
+    
+    <link rel="stylesheet" type="text/css" media="all" href="960gs/text.css" />
+    
+    <link rel="stylesheet" type="text/css" media="all" href="960gs/960.css" />
