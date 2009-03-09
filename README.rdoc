@@ -6,6 +6,7 @@ It can read from user input or from a default config file
 
 == Install
 
+  sudo gem install drcapulet-russell
 
 == Usage
 

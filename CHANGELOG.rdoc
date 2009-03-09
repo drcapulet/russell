@@ -1,0 +1,3 @@
+== 0.0.1 / 08 March 2009
+
+* Setting up the entire thing
