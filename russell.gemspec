@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{russell}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Alex Coomans"]
-  s.date = %q{2009-03-08}
+  s.date = %q{2009-03-12}
   s.default_executable = %q{russell}
   s.description = %q{russell is a command line utility for setting up new web projects with ease}
   s.email = %q{alex@alexcoomans.com}
