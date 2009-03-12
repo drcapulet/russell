@@ -1,3 +1,13 @@
+== 0.1.1
+
+* Refactored the -v flag command: Now reads from VERSION.yml which is automatically updated every release
+* Added jQuery to the frameworks
+* Now config installer checks the version against the current one to update for new release changes
+
+== 0.1.0 / 09 March 2009
+
+* Gem Build
+
 == 0.0.1 / 08 March 2009
 
 * Setting up the entire thing

@@ -2,7 +2,7 @@ name:
     Blueprint CSS
 
 description:
-    This is a test for Blueprint
+    Blueprint is a CSS framework, which aims to cut down on your CSS development time. It gives you a solid CSS foundation to build your project on top of, with an easy to use grid, sensible typography, and even a stylesheet for printing.
 
 manifest:
   ie.css

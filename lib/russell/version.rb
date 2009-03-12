@@ -1,4 +1,3 @@
-
 module Russell
   module Version
     # Returns a hash representing the version.
@@ -9,51 +8,30 @@ module Russell
     #
     # This method swiped from Haml and then modified, some credit goes to Nathan Weizenbaum
     # I (alex) then swiped it from Compass - so thanks there!
-    attr_writer :version
-    def version
-      return @version if defined?(@version)
-
-      read_version_file
-      parse_version
-
-      if r = revision
-        @version[:rev] = r
-        @version[:string] << " [#{r[0...7]}]"
-      end
-
-      @version
-    end
-
-    protected
-
+    attr_reader :major, :minor, :patch
+    
     def scope(file) # :nodoc:
       File.join(File.dirname(__FILE__), '..', '..', file)
     end
-
-    def read_version_file
-      @version = {
-        :string => File.read(scope('VERSION')).strip
-      }
-    end
-
-    def parse_version
-      dotted_string, @version[:label] = @version[:string].split(/-/, 2)
-      numbers = dotted_string.split('.').map { |n| n.to_i }
-      [:major, :minor, :teeny].zip(numbers).each do |attr, value|
-        @version[attr] = value
+        
+    def read_version
+      yaml = YAML::load(File.open("#{Russell.base_directory}/VERSION.yml"))
+      @major = (yaml['major'] || yaml[:major]).to_i
+      @minor = (yaml['minor'] || yaml[:minor]).to_i
+      @patch = (yaml['patch'] || yaml[:patch]).to_i
+            
+      @version = {:string => "#{@major}.#{@minor}.#{@patch}"}
+      @version[:q] = "#{@major}.#{@minor}.#{@patch}"
+      
+      if r = revision_from_git
+        @version[:rev] = r
+        @version[:string] << " [#{r[0...7]}]"
       end
+      @version
     end
-
-    def revision
-      revision_from_git || revision_from_file
-    end
-
-    def revision_from_file
-      if File.exists?(scope('REVISION'))
-        rev = File.read(scope('REVISION')).strip
-        rev = nil if rev !~ /[a-f0-9]+/
-      end
-    end
+    
+    protected
+    
 
     def revision_from_git
       if File.exists?(scope('.git/HEAD'))
@@ -64,5 +42,7 @@ module Russell
       end
     end
 
+    module_function :read_version, :revision_from_git, :scope
+    
   end
 end

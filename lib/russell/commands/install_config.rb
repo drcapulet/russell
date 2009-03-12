@@ -1,3 +1,4 @@
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'version'))
 require "yaml"
 
 module Russell
@@ -11,8 +12,9 @@ module Russell
       def perform
         begin
           @config = YAML::load(File.open("#{Russell.base_directory}/russell.config"))
+          check_config_version(@config)
           read_and_install_with_config(@config)
-        rescue
+        rescue => error
           q = ask("No config file exists. Create one?", "Not creating one. Exiting")
           if (q == 1)
             create_config
@@ -34,6 +36,22 @@ module Russell
         end
       end
       
+      def check_config_version(config)
+        @version = Russell::Version.read_version
+        if config['version'] != @version[:q]
+          q = ask("Config file is outdated. Would you like to create a new one?", "")
+          if (q == 1)
+            create_config
+            exit
+          else
+            exit
+          end
+        else
+          return true
+        end
+        
+      end
+      
       def create_config
         config = {}
         @frameworks = YAML::load(File.open("#{Russell.base_directory}/frameworks/manifest.yml"))
@@ -45,6 +63,10 @@ module Russell
             config["#{fwname}"] = false
           end
         end
+        
+        @version = Russell::Version.read_version
+        config["version"] = @version[:q]
+        
         write_config(config)
       end
       
@@ -63,7 +85,7 @@ module Russell
       def read_and_install_with_config(config)
         command = :install_one
         config.each do |fw, value|
-          if value
+          if value && (fw != "version")
             self.options[:noask] = true
             self.options[:framework] = fw
             do_command(command, options)

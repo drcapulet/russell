@@ -29,6 +29,8 @@ module Russell
           q = ask(@css["prefix"], framework.capitalize.chomp, @css["type"], @css["response"])
         else
           q = 1
+          puts "Installing the #{framework} framework"
+          puts "======================================"
         end
         
         if (q == 1)
@@ -64,12 +66,11 @@ module Russell
       def show_src_code(config)
         if config['src']
           puts ""
-          puts "----------------------------"
           puts "To include in your project, add the following to the head section of your file:"
-          puts ""
           config['src'].each do |line|
             puts "   #{line}"
           end
+          puts ""
           puts ""
         end
       end

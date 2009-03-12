@@ -79,6 +79,7 @@ END
         end
         
         opts.on_tail("-v", "--version", "Print version") do
+          
           self.options[:command] = :print_version
         end
       end

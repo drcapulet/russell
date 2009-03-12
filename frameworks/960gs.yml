@@ -1,11 +1,15 @@
 name:
-    960 CSS
+    960gs
 
 description:
-    This is a test for 960
+    The 960 Grid System is an effort to streamline web development workflow by providing commonly used dimensions, based on a width of 960 pixels. There are two variants 12 and 16 columns, which can be used separately or in tandem.
 
 manifest:
-    none
+    reset.css
+    
+    text.css
+    
+    960.css
 
 inside: true
 
